@@ -4,6 +4,7 @@ int a[500000];
 void merge(int,int,int);
 void merge_sort(int low,int high)
 {
+	
 	 int mid;
 	 if(low<high)
 	 {
