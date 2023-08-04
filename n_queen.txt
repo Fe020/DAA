@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <math.h>
+
+#define FALSE 0
+#define TRUE 1
+
+int x[20];
+
+int canPlaceQueen(int row, int column, int n) {
+    int i;
+    for (i = 1; i < row; i++) {
+        if ((x[i] == column) || (abs(x[i] - column) == abs(i - row))) {
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
+void nqueens(int row, int n) {
+    int column, a;
+    for (column = 1; column <= n; column++) {
+        if (canPlaceQueen(row, column, n)) {
+            x[row] = column;
+            if (row == n) {
+                for (a = 1; a <= n; a++) {
+                    printf("%d\t", x[a]);
+                }
+                printf("\n");
+            } else {
+                nqueens(row + 1, n);
+            }
+        }
+    }
+}
+
+int main() {
+    int n;
+    printf("\nEnter the number of queens: ");
+    scanf("%d", &n);
+    printf("\nThe solution to N Queens problem is:\n");
+    nqueens(1, n);
+    return 0;
+}
